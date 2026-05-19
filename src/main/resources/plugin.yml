@@ -1,7 +1,7 @@
 name: AutoFishing
 version: '${project.version}'
 main: wm.vdr.autofishing.AutoFishing
-api-version: '1.21'
+api-version: '26.1'
 authors: [ WMGameLive ]
 description: Allows players to automatically fish.
 folia-supported: true
