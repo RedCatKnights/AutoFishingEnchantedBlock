@@ -1,7 +1,7 @@
 package wm.vdr.autofishing;
 
-import net.md_5.bungee.api.ChatColor;
 import org.bstats.bukkit.Metrics;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -57,7 +57,7 @@ public final class AutoFishing extends JavaPlugin {
         if(customModelData != 0) {
             meta.setCustomModelData(customModelData);
         }
-        meta.getPersistentDataContainer().set(key, PersistentDataType.BOOLEAN, true);
+        meta.getPersistentDataContainer().set(key, PersistentDataType.BYTE, (byte) 1);
         item.setItemMeta(meta);
         return item;
 

@@ -111,3 +111,5 @@ buildNumber.properties
 
 # Common working directory
 run/
+/scripts/test-server-matrix.ps1
+/src/test/
