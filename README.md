@@ -20,6 +20,10 @@ Ticks_After_Bitten: 5
 #How long should it auto fishing again after reel in and caught something.
 Ticks_After_Caught: 20
 
+#If a cast has not been reeled in after this many ticks, reel in and cast again.
+#Set to 0 to disable this feature. 1200 ticks = 60 seconds.
+Ticks_Before_Timeout: 1200
+
 Only_Specific_Rod:
   #If true, player need to use the specific rod below to use the auto fishing ability.
   Enable: false

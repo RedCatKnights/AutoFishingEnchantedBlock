@@ -22,10 +22,15 @@ public class ServerTypeUtil {
     }
 
     public static void runAtPlayer(JavaPlugin plugin, org.bukkit.entity.Player player, Runnable runnable, long delay) {
+        runAtPlayer(plugin, player, runnable, null, delay);
+    }
+
+    public static void runAtPlayer(JavaPlugin plugin, org.bukkit.entity.Player player, Runnable runnable,
+                                   Runnable retired, long delay) {
         if (isFolia()) {
             try {
                 Object scheduler = player.getClass().getMethod("getScheduler").invoke(player);
-                runDelayed(scheduler, plugin, runnable, Math.max(1L, delay));
+                runDelayed(scheduler, plugin, runnable, retired, Math.max(1L, delay));
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                 plugin.getLogger().severe("Could not schedule an entity task on Folia: " + e.getMessage());
             }
@@ -36,9 +41,14 @@ public class ServerTypeUtil {
 
     static void runDelayed(Object scheduler, JavaPlugin plugin, Runnable runnable, long delay)
             throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        runDelayed(scheduler, plugin, runnable, null, delay);
+    }
+
+    static void runDelayed(Object scheduler, JavaPlugin plugin, Runnable runnable, Runnable retired, long delay)
+            throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method runDelayed = scheduler.getClass().getMethod(
                 "runDelayed", org.bukkit.plugin.Plugin.class, Consumer.class, Runnable.class, long.class);
         Consumer<Object> task = ignored -> runnable.run();
-        runDelayed.invoke(scheduler, plugin, task, null, delay);
+        runDelayed.invoke(scheduler, plugin, task, retired, delay);
     }
 }
