@@ -13,42 +13,34 @@ import java.util.List;
 
 public class Executors implements CommandExecutor, TabCompleter {
 
-    private AutoFishing main = AutoFishing.instance;
+    private final AutoFishing main = AutoFishing.instance;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(args.length == 0) {
-            String[] helpMessage = new String[]{
-                    "§7]§8----- §eAutoFishing §8-----§7[",
-                    "",
-                    "§a/autofishing toggle §7- §etoggle the auto fishing ability",
-                    "§a/autofishing give <player> §7- §egive the specific rod to someone",
-                    "§a/autofishing reload §7- §ereload the config file",
-                    "",
-                    "§7[§8-----------------------§7["
-            };
-            for (String helpMessageLine : helpMessage) sender.sendMessage(helpMessageLine);
+            for (String line : main.getMessageList("Help")) sender.sendMessage(line);
             return true;
         }
         if(args[0].equalsIgnoreCase("reload")) {
             if(!sender.hasPermission("autofishing.admin")) {
-                sender.sendMessage("§cYou do not have permission to do that!");
+                sender.sendMessage(main.getMessage("No_Permission"));
                 return true;
             }
             main.reloadConfig();
+            main.reloadMessages();
             main.getPlayerDataUtil().reloadPlayerData();
-            sender.sendMessage("§aSuccessfully reloaded.");
+            sender.sendMessage(main.getMessage("Reload_Success"));
             return true;
         }
         if(args[0].equalsIgnoreCase("give")) {
             if(!sender.hasPermission("autofishing.admin")) {
-                sender.sendMessage("§cYou do not have permission to do that!");
+                sender.sendMessage(main.getMessage("No_Permission"));
                 return true;
             }
             Player player;
             if(args.length < 2) {
                 if(!(sender instanceof Player)) {
-                    sender.sendMessage("§cUsage: /autofishing give <Player>");
+                    sender.sendMessage(main.getMessage("Give_Usage"));
                     return true;
                 }
                 player = (Player) sender;
@@ -57,7 +49,7 @@ public class Executors implements CommandExecutor, TabCompleter {
             }
 
             if(player == null) {
-                sender.sendMessage("§cThe player does not exist.");
+                sender.sendMessage(main.getMessage("Player_Not_Found"));
                 return true;
             }
 
@@ -65,26 +57,27 @@ public class Executors implements CommandExecutor, TabCompleter {
                 player.getWorld().dropItem(player.getLocation(), itemStack);
             });
 
-            sender.sendMessage("§aGave the fishing rod to §e" + player.getName());
+            sender.sendMessage(main.getMessage("Rod_Given", "%player%", player.getName()));
             return true;
         }
         if(args[0].equalsIgnoreCase("toggle")) {
             if(!(sender instanceof Player)) {
-                sender.sendMessage("§cOnly players can use this command!");
+                sender.sendMessage(main.getMessage("Player_Only"));
                 return true;
             }
             Player player = (Player) sender;
             if(!player.hasPermission("autofishing.use")) {
-                player.sendMessage("§cYou do not have permission to do that!");
+                player.sendMessage(main.getMessage("No_Permission"));
                 return true;
             }
             boolean auto = main.getPlayerDataUtil().isAuto(player.getUniqueId());
             main.getPlayerDataUtil().setAuto(player.getUniqueId(), !auto);
 
-            player.sendMessage(auto ? "§eAuto-fishing is now disabled." : "§aAuto-fishing is now enabled.");
+            player.sendMessage(main.getMessage(auto ? "AutoFishing_Disabled" : "AutoFishing_Enabled"));
             return true;
         }
-        return false;
+        sender.sendMessage(main.getMessage("Unknown_Command"));
+        return true;
     }
 
     @Override

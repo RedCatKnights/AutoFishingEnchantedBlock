@@ -1,0 +1,18 @@
+Help:
+  - "&7]&8----- &eAutoFishing &8-----&7["
+  - ""
+  - "&a/autofishing toggle &7- &etoggle the auto fishing ability"
+  - "&a/autofishing give <player> &7- &egive the specific rod to someone"
+  - "&a/autofishing reload &7- &ereload the configuration and messages"
+  - ""
+  - "&7[&8-----------------------&7["
+
+No_Permission: "&cYou do not have permission to do that!"
+Reload_Success: "&aSuccessfully reloaded."
+Give_Usage: "&cUsage: /autofishing give <Player>"
+Player_Not_Found: "&cThe player does not exist."
+Rod_Given: "&aGave the fishing rod to &e%player%&a."
+Player_Only: "&cOnly players can use this command!"
+AutoFishing_Enabled: "&aAuto-fishing is now enabled."
+AutoFishing_Disabled: "&eAuto-fishing is now disabled."
+Unknown_Command: "&cUnknown subcommand. Use /autofishing to view the available commands."

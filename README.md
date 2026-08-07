@@ -2,6 +2,9 @@
 A simple plugin that allow players to automatically fish.  
 Download on [Spigot](https://www.spigotmc.org/resources/100510/).
 
+## Supported Server
+Spigot, Paper, Folia
+
 ## Commands
 ● /autofishing reload - reload the config file.  
 ● /autofishing give [player] - give the specific rod to a player.  
@@ -37,4 +40,9 @@ Only_Specific_Rod:
   #so after you generate a rod by using /autofishing give, 
   #you can use some item editor plugin to modify the rod and sell it using shop plugin or whatever you want.
 ``` 
+
+## Messages
+
+Command feedback can be customized in `plugins/AutoFishing/messages.yml`.
+The `%player%` placeholder is available in the `Rod_Given` message.
 

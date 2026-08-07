@@ -17,19 +17,23 @@ public final class AutoFishing extends JavaPlugin {
     public static AutoFishing instance;
 
     private PlayerDataUtil playerDataUtil;
+    private Messages messages;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
         instance = this;
+        messages = new Messages(this);
+        playerDataUtil = new PlayerDataUtil();
+
         getServer().getPluginManager().registerEvents(new Listeners(), this);
-        getCommand("autofishing").setExecutor(new Executors());
-        getCommand("autofishing").setTabCompleter(new Executors());
+        Executors executors = new Executors();
+        getCommand("autofishing").setExecutor(executors);
+        getCommand("autofishing").setTabCompleter(executors);
 
         int pluginId = 16050;
         Metrics metrics = new Metrics(this, pluginId);
 
-        playerDataUtil = new PlayerDataUtil();
     }
 
     @Override
@@ -39,6 +43,18 @@ public final class AutoFishing extends JavaPlugin {
 
     public PlayerDataUtil getPlayerDataUtil() {
         return playerDataUtil;
+    }
+
+    public String getMessage(String path, String... replacements) {
+        return messages.get(path, replacements);
+    }
+
+    public List<String> getMessageList(String path) {
+        return messages.getList(path);
+    }
+
+    public void reloadMessages() {
+        messages.reload();
     }
 
     public NamespacedKey key = new NamespacedKey(this, "FishingRod");
