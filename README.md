@@ -2,6 +2,9 @@
 A simple plugin that allow players to automatically fish.  
 Download on [Spigot](https://www.spigotmc.org/resources/100510/).
 
+Recently, I noticed that someone else has re-uploaded this plugin to Modrinth.
+I have only uploaded this plugin to Spigot. Any copies found on other platforms were not uploaded by me and may contain viruses. Please do not download them.
+
 ## Supported Server
 Spigot, Paper, Folia
 
