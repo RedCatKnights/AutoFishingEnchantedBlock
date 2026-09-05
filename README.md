@@ -42,6 +42,15 @@ Only_Specific_Rod:
   #The plugin using nbt tag to check if player is using the specific rod,
   #so after you generate a rod by using /autofishing give, 
   #you can use some item editor plugin to modify the rod and sell it using shop plugin or whatever you want.
+
+# Enchantment that prevents automatic fishing rods from being applied at an anvil
+# Remove the "#" at the beginning of the line for the enchantment you want to block.
+Blocked_Enchantments:
+#  - "MENDING"
+#  - "UNBREAKING"
+#  - "LURE"
+#  - "LUCK_OF_THE_SEA"
+#  - "VANISHING_CURSE"
 ``` 
 
 ## Messages
