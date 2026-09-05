@@ -7,3 +7,12 @@ Only_Specific_Rod:
   Rod_Lore:
     - "&fUse this to Auto-Fishing."
   Rod_Model_Data: 0
+
+# Enchantment that prevents automatic fishing rods from being applied at an anvil
+# Remove the "#" at the beginning of the line for the enchantment you want to block.
+Blocked_Enchantments:
+#  - "MENDING"
+#  - "UNBREAKING"
+#  - "LURE"
+#  - "LUCK_OF_THE_SEA"
+#  - "VANISHING_CURSE"
